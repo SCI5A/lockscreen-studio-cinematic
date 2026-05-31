@@ -254,6 +254,7 @@ export const RemotionRoot: React.FC = () => {
     <>
       <Composition
         id="LockscreenComposition"
+        // @ts-ignore
         component={LockscreenCompositionInner}
         durationInFrames={300}
         fps={30}
