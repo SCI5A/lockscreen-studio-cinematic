@@ -501,6 +501,12 @@ export default function App() {
     <div style={{display:"flex",flexDirection:"column",width:"100%",height:"100vh",background:"#080809",fontFamily:"system-ui,-apple-system,sans-serif",color:"#ebebf5",overflow:"hidden"}}>
       <TopBar st={st} dispatch={dispatch}/>
 
+      {/* Top: Timeline (Moved from Bottom) */}
+      <div style={{flexShrink:0,borderBottom:"1px solid #1a1a1c"}}>
+        <PanelHeader icon={IC.film} label="Timeline" style={{height:24}}/>
+        <div style={{height:118}}><TimelineEditor st={st} dispatch={dispatch}/></div>
+      </div>
+
       <div style={{flex:1,display:"flex",overflow:"hidden",minHeight:0}}>
         {/* Left: Properties */}
         <div style={{width:215,flexShrink:0,borderRight:"1px solid #1a1a1c",background:"#0a0a0c",display:"flex",flexDirection:"column",overflow:"hidden"}}>
@@ -527,12 +533,6 @@ export default function App() {
           <PanelHeader icon={IC.img} label="Assets"/>
           <div style={{flex:1,overflow:"hidden"}}><AssetManager st={st} dispatch={dispatch}/></div>
         </div>
-      </div>
-
-      {/* Bottom: Timeline */}
-      <div style={{flexShrink:0,borderTop:"1px solid #1a1a1c"}}>
-        <PanelHeader icon={IC.film} label="Timeline" style={{height:24}}/>
-        <div style={{height:118}}><TimelineEditor st={st} dispatch={dispatch}/></div>
       </div>
     </div>
   );
