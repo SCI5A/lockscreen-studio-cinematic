@@ -13,6 +13,7 @@ const INIT = {
   bg: null,
   bgType: "image",
   audio: null,
+  audioName: "",
   overlayOpacity: 0.15,
   blur: 0,
   isDarkMode: true,
@@ -62,7 +63,7 @@ function FileUploader({ onUpload, label, accept, icon }) {
         const file = e.target.files[0];
         if (file) {
           const url = URL.createObjectURL(file);
-          onUpload(url, file.type.startsWith("video") ? "video" : file.type.startsWith("audio") ? "audio" : "image");
+          onUpload(url, file.type.startsWith("video") ? "video" : file.type.startsWith("audio") ? "audio" : "image", file);
         }
       }} />
     </div>
@@ -238,8 +239,9 @@ export default function App() {
           
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
             <FileUploader icon="🖼️" label="خلفية" accept="image/*,video/*" onUpload={(url, type) => dispatch({ type: "SET", payload: { bg: url, bgType: type } })} />
-            <FileUploader icon="🎵" label="موسيقى" accept="audio/*" onUpload={(url) => dispatch({ type: "SET", payload: { audio: url } })} />
+            <FileUploader icon="🎵" label={st.audio ? "تغيير الموسيقى" : "موسيقى"} accept="audio/*" onUpload={(url, type, file) => dispatch({ type: "SET", payload: { audio: url, audioName: file?.name || "" } })} />
           </div>
+          {st.audioName && <div style={{ fontSize: "10px", opacity: 0.5, marginBottom: "10px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>🎵 {st.audioName}</div>}
 
           <div style={{ marginBottom: "20px" }}>
             <label style={{ fontSize: "11px", opacity: 0.6, display: "block", marginBottom: "5px" }}>شفافية الطبقة ({Math.round(st.overlayOpacity * 100)}%)</label>
