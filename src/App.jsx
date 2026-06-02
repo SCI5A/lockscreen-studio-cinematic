@@ -130,9 +130,10 @@ function IPhonePreview({ st, frame }) {
           {activeNotifs.length === 0 ? (
             <motion.div
               key="empty"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.4 }}
-              exit={{ opacity: 0 }}
+              initial={{ opacity: 0, y: 0 }}
+              animate={{ opacity: 0.4, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.5 }}
               style={{ textAlign: "center", color: "#fff", fontSize: "12px", marginTop: "20px" }}
             >
               لا توجد إشعارات قديمة
@@ -270,12 +271,12 @@ export default function App() {
                 <textarea value={n.text} onChange={(e) => dispatch({ type: "UPD_NOTIF", id: n.id, payload: { text: e.target.value } })} style={{ width: "100%", background: "transparent", border: "none", color: st.isDarkMode ? "#fff" : "#000", marginBottom: "8px", fontSize: "13px", resize: "none", outline: "none" }} rows="2" />
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px", marginBottom: "8px" }}>
                   <div>
-                    <label style={{ fontSize: "9px", opacity: 0.5, display: "block" }}>بداية (إطار)</label>
-                    <input type="number" value={n.startFrame} onChange={(e) => dispatch({ type: "UPD_NOTIF", id: n.id, payload: { startFrame: parseInt(e.target.value) } })} style={{ width: "100%", background: "rgba(0,0,0,0.1)", border: "none", color: "inherit", fontSize: "11px", padding: "4px", borderRadius: "4px" }} />
+                    <label style={{ fontSize: "9px", opacity: 0.5, display: "block" }}>وقت الظهور (ثانية)</label>
+                    <input type="number" step="0.1" value={(n.startFrame / FPS).toFixed(1)} onChange={(e) => dispatch({ type: "UPD_NOTIF", id: n.id, payload: { startFrame: Math.round(parseFloat(e.target.value) * FPS) } })} style={{ width: "100%", background: "rgba(0,0,0,0.1)", border: "none", color: "inherit", fontSize: "11px", padding: "4px", borderRadius: "4px" }} />
                   </div>
                   <div>
-                    <label style={{ fontSize: "9px", opacity: 0.5, display: "block" }}>مدة (إطار)</label>
-                    <input type="number" value={n.duration} onChange={(e) => dispatch({ type: "UPD_NOTIF", id: n.id, payload: { duration: parseInt(e.target.value) } })} style={{ width: "100%", background: "rgba(0,0,0,0.1)", border: "none", color: "inherit", fontSize: "11px", padding: "4px", borderRadius: "4px" }} />
+                    <label style={{ fontSize: "9px", opacity: 0.5, display: "block" }}>مدة البقاء (ثانية)</label>
+                    <input type="number" step="0.1" value={(n.duration / FPS).toFixed(1)} onChange={(e) => dispatch({ type: "UPD_NOTIF", id: n.id, payload: { duration: Math.round(parseFloat(e.target.value) * FPS) } })} style={{ width: "100%", background: "rgba(0,0,0,0.1)", border: "none", color: "inherit", fontSize: "11px", padding: "4px", borderRadius: "4px" }} />
                   </div>
                 </div>
                 <button onClick={() => dispatch({ type: "DEL_NOTIF", id: n.id })} style={{ color: "#ff3b30", background: "none", border: "none", fontSize: "11px", fontWeight: "600", padding: 0, cursor: "pointer" }}>حذف الإشعار</button>
