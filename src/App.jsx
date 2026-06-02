@@ -121,14 +121,15 @@ function IPhonePreview({ st, frame }) {
         <p style={{ fontSize: "16px", opacity: 0.8, fontFamily: "Amiri, serif", direction: "rtl" }}>{hijri}</p>
       </div>
 
-      {/* Notifications Stack (Sliding from top to bottom) */}
+      {/* Notifications Stack (Pushing down from top) */}
       <div style={{ 
         position: "absolute", top: 260, left: 16, right: 16, 
-        display: "flex", flexDirection: "column", gap: "8px", zIndex: 10 
+        display: "flex", flexDirection: "column-reverse", gap: "10px", zIndex: 10 
       }}>
-        <AnimatePresence initial={false}>
+        <AnimatePresence initial={false} mode="popLayout">
           {activeNotifs.length === 0 ? (
             <motion.div
+              key="empty"
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.4 }}
               exit={{ opacity: 0 }}
@@ -137,27 +138,33 @@ function IPhonePreview({ st, frame }) {
               لا توجد إشعارات قديمة
             </motion.div>
           ) : (
-            activeNotifs.map((n, i) => (
+            [...activeNotifs].reverse().map((n, i) => (
               <motion.div
                 key={n.id}
-                initial={{ opacity: 0, y: -30, scale: 0.9 }}
+                layout
+                initial={{ opacity: 0, y: -50, scale: 0.8 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 20, scale: 0.9 }}
-                transition={{ type: "spring", stiffness: 120, damping: 20 }}
+                exit={{ opacity: 0, scale: 0.5 }}
+                transition={{ 
+                  type: "spring", 
+                  stiffness: 150, 
+                  damping: 20,
+                  layout: { duration: 0.3 }
+                }}
                 style={{
                   background: isDarkMode ? "rgba(255, 255, 255, 0.75)" : "rgba(0, 0, 0, 0.6)", 
                   backdropFilter: "blur(25px) saturate(180%)",
-                  borderRadius: "20px", padding: "12px 16px", 
+                  borderRadius: "22px", padding: "14px 18px", 
                   border: isDarkMode ? "1px solid rgba(255,255,255,0.3)" : "1px solid rgba(0,0,0,0.1)",
-                  boxShadow: "0 8px 32px rgba(0,0,0,0.15)", direction: "rtl"
+                  boxShadow: "0 10px 40px rgba(0,0,0,0.2)", direction: "rtl"
                 }}
               >
-                <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "4px" }}>
-                  <div style={{ width: 20, height: 20, borderRadius: 5, background: "#007aff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px" }}>✉️</div>
-                  <span style={{ fontSize: "13px", fontWeight: "600", color: isDarkMode ? "#000" : "#fff" }}>البريد</span>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}>
+                  <div style={{ width: 22, height: 22, borderRadius: 6, background: "#007aff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "13px" }}>✉️</div>
+                  <span style={{ fontSize: "14px", fontWeight: "700", color: isDarkMode ? "#000" : "#fff" }}>البريد</span>
                   <span style={{ fontSize: "11px", color: isDarkMode ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.5)", marginRight: "auto" }}>الآن</span>
                 </div>
-                <p style={{ margin: 0, fontSize: "16px", color: isDarkMode ? "#000" : "#fff", fontWeight: "400", lineHeight: "1.4" }}>{n.text}</p>
+                <p style={{ margin: 0, fontSize: "17px", color: isDarkMode ? "#000" : "#fff", fontWeight: "400", lineHeight: "1.5" }}>{n.text}</p>
               </motion.div>
             ))
           )}
