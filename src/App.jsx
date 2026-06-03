@@ -8,8 +8,8 @@ function makeId() { return Math.random().toString(36).slice(2, 8); }
 
 const INIT = {
   time: "12:07",
-  date: "Saturday, April 25",
-  hijri: "٨ ذو القعدة ١٤٤٧",
+  date: "Saturday, June 3",
+  hijri: "١٧ ذو الحجة ١٤٤٧",
   bg: null,
   bgType: "image",
   audio: null,
@@ -186,6 +186,19 @@ function IPhonePreview({ st, frame }) {
     </div>
   );
 }
+
+// Add CSS for Custom Fonts and Better Range Input
+const style = document.createElement('style');
+style.textContent = `
+  @import url('https://fonts.googleapis.com/css2?family=Amiri&display=swap');
+  input[type=range] { -webkit-appearance: none; background: transparent; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 20px; width: 20px; border-radius: 50%; background: #0a84ff; cursor: pointer; border: 3px solid #fff; box-shadow: 0 0 10px rgba(0,0,0,0.2); margin-top: -7px; }
+  input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 6px; cursor: pointer; background: rgba(255,255,255,0.1); border-radius: 3px; }
+  textarea::placeholder { color: rgba(255,255,255,0.3); }
+  * { box-sizing: border-box; }
+`;
+document.head.appendChild(style);
+
 
 export default function App() {
   const [st, dispatch] = useReducer(reducer, INIT);

@@ -358,6 +358,11 @@
   resolved "https://registry.npmjs.org/@remotion/compositor-linux-x64-gnu/-/compositor-linux-x64-gnu-4.0.469.tgz"
   integrity sha512-lP+Hzujpk3IB41thQEAf3vnK3bhfqjPrxytKqQ4gWxV830mhQ7g3Htgu9oWGYfshdbfWeMjlRF8rEClzcU/xBw==
 
+"@remotion/compositor-linux-x64-musl@4.0.469":
+  version "4.0.469"
+  resolved "https://registry.npmjs.org/@remotion/compositor-linux-x64-musl/-/compositor-linux-x64-musl-4.0.469.tgz"
+  integrity sha512-5NV/W1rmZIQFn4ivYCNyg/YooUxKkd+EX/d+rdt/sidPzQUpySRm81F+pnnuqnVldlHmr6LGl9sNe5DSH9dJtw==
+
 "@remotion/licensing@4.0.469":
   version "4.0.469"
   resolved "https://registry.npmjs.org/@remotion/licensing/-/licensing-4.0.469.tgz"
@@ -488,10 +493,20 @@
   resolved "https://registry.npmjs.org/@rollup/rollup-linux-x64-gnu/-/rollup-linux-x64-gnu-4.60.4.tgz"
   integrity sha512-Boiz5+MsaROEWDf+GGEwF8VMHGhlUoQMtIPjOgA5fv4osupqTVnJteQNKJwUcnUog2G55jYXH7KZFFiJe0TEzQ==
 
+"@rollup/rollup-linux-x64-musl@4.60.4":
+  version "4.60.4"
+  resolved "https://registry.npmjs.org/@rollup/rollup-linux-x64-musl/-/rollup-linux-x64-musl-4.60.4.tgz"
+  integrity sha512-+qfSY27qIrFfI/Hom04KYFw3GKZSGU4lXus51wsb5EuySfFlWRwjkKWoE9emgRw/ukoT4Udsj4W/+xxG8VbPKg==
+
 "@rspack/binding-linux-x64-gnu@1.7.6":
   version "1.7.6"
   resolved "https://registry.npmjs.org/@rspack/binding-linux-x64-gnu/-/binding-linux-x64-gnu-1.7.6.tgz"
   integrity sha512-NdA+2X3lk2GGrMMnTGyYTzM3pn+zNjaqXqlgKmFBXvjfZqzSsKq3pdD1KHZCd5QHN+Fwvoszj0JFsquEVhE1og==
+
+"@rspack/binding-linux-x64-musl@1.7.6":
+  version "1.7.6"
+  resolved "https://registry.npmjs.org/@rspack/binding-linux-x64-musl/-/binding-linux-x64-musl-1.7.6.tgz"
+  integrity sha512-rEy6MHKob02t/77YNgr6dREyJ0e0tv1X6Xsg8Z5E7rPXead06zefUbfazj4RELYySWnM38ovZyJAkPx/gOn3VA==
 
 "@rspack/binding@1.7.6":
   version "1.7.6"
